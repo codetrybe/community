@@ -16,17 +16,5 @@ body:
     attributes:
       label: Additional Context
       description: Please tell us a little bit about yourself and why you would like to join the CodeTrybe community. For example, you could mention any relevant experience you have, what programming languages or technologies you are interested in, or what you hope to gain by being a member of the community.
-      placeholder: "
-                    ## A little bit about myself
-                    I am a software engineer with passion in open-source and anything tech related
-                    ## Why would I want to join CodeTrybe
-                    I want to be a part of a great community like CodeTrybe
-                    ## Relevant experience
-                    I have contributed in many open-source projects like in the EddieHub community
-                    ## Programming languages and interests
-                    Javascript, Bash, C
-                    ## What I hope to gain from the community
-                    I hope to gain experience in software engineering, team work and collaboration.
-                    "
     validations:
       required: true
