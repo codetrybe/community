@@ -6,8 +6,8 @@ jobs:
   automate_invite:
     runs-on: ubuntu-latest
     steps:
-      - name: Join CodeTrybe
-        uses: vj-abigo/invite-on-label@v1.4
+      - name: Invite on label
+        uses: vj-abigo/invite-on-label@v1.2
         with:
           organization: codetrybe
           label: Join CodeTrybe
