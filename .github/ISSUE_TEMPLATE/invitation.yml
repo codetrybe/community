@@ -14,7 +14,7 @@ body:
   - type: textarea
     id: additional-context
     attributes:
-      label: Additional Context
-      description: Please tell us a little bit about yourself and why you would like to join the CodeTrybe community. For example, you could mention any relevant experience you have, what programming languages or technologies you are interested in, or what you hope to gain by being a member of the community.
+      label: Tell us more about yourself
+      description: Why you would like to join the CodeTrybe community. For example, you could mention any relevant experience you have, what programming languages or technologies you are interested in, or what you hope to gain by being a member of the community.
     validations:
       required: true
