@@ -1,0 +1,38 @@
+name: List Contributors
+
+on:
+  push:
+  pull_request:
+  issues:
+  issue_comment:
+  pull_request_review_comment:
+    types: [created, edited, deleted]
+  pull_request_review:
+    types: [submitted, edited, dismissed]
+
+jobs:
+  list-contributors:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: List Contributors
+        uses: peter-evans/org-contributors@v2.2.2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          organization: codetrybe
+          include-repos: true
+          output: contributors.txt
+
+      - name: Sort Contributors
+        run: |
+          sort contributors.txt > sorted-contributors.txt
+          mv sorted-contributors.txt contributors.txt
+
+      - name: Update README
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: 'Update contributors list'
+          file_pattern: 'README.md'
+          commit_options: '--no-verify'
