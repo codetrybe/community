@@ -63,6 +63,6 @@ jobs:
           file_pattern: 'README.md'
           commit_options: '--no-verify'
 
-    finally:
-      - name: Remove temporary files
-        run: rm -rf contributors.json sorted-contributors.txt
+    # finally:
+    #   - name: Remove temporary files
+    #     run: rm -rf contributors.json sorted-contributors.txt
