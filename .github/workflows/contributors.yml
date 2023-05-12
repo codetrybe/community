@@ -14,20 +14,43 @@ jobs:
   list-contributors:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get -y install jq
 
-      - name: List Contributors
-        uses: peter-evans/org-contributors@v2.2.2
+      - name: Get Contributors
+        id: contributors
+        uses: actions/github-script@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          organization: codetrybe
-          include-repos: true
-          output: contributors.txt
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            const contributors = {};
+            const octokit = require('@octokit/rest')();
+            octokit.authenticate({
+              type: 'token',
+              token: process.env.GITHUB_TOKEN
+            });
+            const { data: repositories } = await octokit.repos.listForOrg({
+              org: codetrybe,
+              per_page: 100
+            });
+            for (const repo of repositories) {
+              const { data: contributorsData } = await octokit.repos.listContributors({
+                owner: codetrybe,
+                repo: repo.name,
+                per_page: 100
+              });
+              for (const contributor of contributorsData) {
+                const { login, html_url } = contributor;
+                if (!contributors[login]) {
+                  contributors[login] = html_url;
+                }
+              }
+            }
+            return JSON.stringify(contributors);
 
       - name: Sort Contributors
         run: |
-          sort contributors.txt > sorted-contributors.txt
+          jq -r 'keys[]' contributors.json | sort -u > sorted-contributors.txt
           mv sorted-contributors.txt contributors.txt
 
       - name: Update README
