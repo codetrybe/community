@@ -12,6 +12,6 @@ jobs:
           organization: codetrybe
           label: Join CodeTrybe
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          comment: "<b>Invitation sent to join CodeTrybe (ALX SWE). Welcome to the community 🎉</b><br>Don't forget to make the Community public on your profile, so it appears on your GitHub profile for everyone else to see. You can do this by finding your name in the GitHub organisation list and change the dropdown to public https://github.com/orgs/codetrybe/people<br><br><b>HAPPY CODING!</b><br>"
+          comment: "<b>Invitation sent to join CodeTrybe (ALX SWE). Welcome to the community 🎉</b><br>Don't forget to make the Community membership public on your profile. You can do this by finding your name in the GitHub organisation list and change the dropdown to public https://github.com/orgs/codetrybe/people<br><br><b>HAPPY CODING!</b><br>"
         env:
           INVITE_TOKEN: ${{ secrets.INVITE_TOKEN }}
